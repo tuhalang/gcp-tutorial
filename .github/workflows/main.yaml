@@ -30,8 +30,8 @@ jobs:
       - run: |-
           gcloud --quiet auth configure-docker
       # Get the GKE credentials so we can deploy to the cluster
-      - run: |-
-          gcloud container clusters get-credentials "$GKE_CLUSTER" --region "$GKE_REGION"
+      # - run: |-
+      #     gcloud container clusters get-credentials "$GKE_CLUSTER" --region "$GKE_REGION"
       # Build the Docker image
       - name: Build
         run: |-
