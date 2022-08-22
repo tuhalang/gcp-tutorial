@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: gcp-tutorial
+  name: gcp-tutorial
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: gcp-tutorial
+  template:
+    metadata:
+      labels:
+        run: gcp-tutorial
+    spec:
+      containers:
+      - image: gcr.io/$PROJECT_ID/gcp-tutorial:latest
+        name: gcp-tutorial
+        ports:
+        - containerPort: 8080

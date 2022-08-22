@@ -1,0 +1,47 @@
+steps:
+# Step 1
+- name: 'golang:1.17-alpine3.16'
+  entrypoint: 'bash'
+  args: [
+   '-c',
+   'make test'
+  ]
+# Step 2
+- name: 'gcr.io/cloud-builders/docker'
+  entrypoint: 'bash'
+  args: [
+   '-c',
+   'docker pull gcr.io/$PROJECT_ID/gcp-tutorial:latest || exit 0'
+  ]
+# Step 3
+- name: gcr.io/cloud-builders/docker
+  args: [
+   'build',
+   '-t',
+   'gcr.io/$PROJECT_ID/gcp-tutorial:latest',
+   '.'
+  ]
+  dir: 'gcp-tutorial'
+# Step 4
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: ['apply', '-f', 'k8s/']
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=asia-east1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gcp-tutorial'
+# Step 5
+- name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+   'set',
+   'image',
+   'deployment',
+   'gcp-tutorial',
+   'gcp-tutorial=gcr.io/$PROJECT_ID/gcp-tutorial:latest'
+  ]
+  env:
+  - 'CLOUDSDK_COMPUTE_REGION=asia-east1'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=gcp-tutorial'
+  # Push the image to Google Container Registry with the latest tag
+images: [
+   'gcr.io/$PROJECT_ID/gcp-tutorial:latest'
+  ]
+
