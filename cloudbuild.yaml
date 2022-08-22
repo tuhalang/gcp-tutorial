@@ -21,7 +21,6 @@ steps:
    'gcr.io/$PROJECT_ID/gcp-tutorial:latest',
    '.'
   ]
-  dir: 'gcp-tutorial'
 # Step 4
 - name: 'gcr.io/cloud-builders/kubectl'
   args: ['apply', '-f', 'k8s/']
