@@ -15,7 +15,7 @@ spec:
         run: gcp-tutorial
     spec:
       containers:
-      - image: gcr.io/$PROJECT_ID/gcp-tutorial:latest
+      - image: gcr.io/gcp-associate-20223/gcp-tutorial:latest
         name: gcp-tutorial
         ports:
         - containerPort: 8080
