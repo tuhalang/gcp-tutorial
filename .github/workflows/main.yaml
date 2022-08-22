@@ -6,7 +6,7 @@ on:
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: gcp-tutorial
-  GKE_REGION: asia-east1-a
+  GKE_REGION: asia-east1
   IMAGE: gcp-tutorial
 
 jobs:
@@ -31,7 +31,7 @@ jobs:
           gcloud --quiet auth configure-docker
       # Get the GKE credentials so we can deploy to the cluster
       - run: |-
-          gcloud container clusters get-credentials "$GKE_CLUSTER" --zone "$GKE_REGION"
+          gcloud container clusters get-credentials "$GKE_CLUSTER" --region "$GKE_REGION"
       # Build the Docker image
       - name: Build
         run: |-
