@@ -1,7 +1,7 @@
 steps:
 # Step 1
 - name: 'golang:1.17-alpine3.16'
-  entrypoint: 'bash'
+  entrypoint: '/bin/sh'
   args: [
    '-c',
    'make test'
