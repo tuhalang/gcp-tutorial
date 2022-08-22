@@ -4,6 +4,7 @@ import (
 	"io/ioutil"
 	"net/http"
 	"net/http/httptest"
+	"strings"
 	"testing"
 )
 
@@ -19,7 +20,7 @@ func TestHelloWorldHandler(t *testing.T) {
 	if err != nil {
 		t.Errorf("expected error to be nil got %v", err)
 	}
-	if string(data) != "Hello World" {
+	if !strings.HasPrefix(string(data), "Hello World") {
 		t.Errorf("expected Hello World got %v", string(data))
 	}
 }
