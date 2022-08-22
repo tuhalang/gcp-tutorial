@@ -19,3 +19,4 @@ spec:
         name: gcp-tutorial
         ports:
         - containerPort: 8080
+        imagePullPolicy: Always
