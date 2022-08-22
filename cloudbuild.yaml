@@ -4,7 +4,7 @@ steps:
   entrypoint: '/bin/sh'
   args: [
    '-c',
-   'make test'
+   'go test -v -cover ./...'
   ]
 # Step 2
 - name: 'gcr.io/cloud-builders/docker'
