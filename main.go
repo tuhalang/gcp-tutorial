@@ -3,10 +3,14 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 )
 
 func helloWorld(w http.ResponseWriter, r *http.Request) {
+	hostname, _ := os.Hostname()
+	log.Printf("Hostname: %s, clientIp: %s", hostname, r.RemoteAddr)
 	fmt.Fprintf(w, "Hello World")
 }
 
